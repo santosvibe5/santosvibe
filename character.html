@@ -155,6 +155,11 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="characterSerial">Karakter Serial Numarası</label>
+                        <input type="text" id="characterSerial" class="form-control" placeholder="Karakterinizin serial numarasını giriniz" required>
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="discordName">Discord Kullanıcı Adınız</label>
                         <input type="text" id="discordName" class="form-control" placeholder="Örn: KullanıcıAdı#1234" required>
                     </div>
@@ -190,6 +195,7 @@
             const characterBackground = document.getElementById('characterBackground').value;
             const characterPersonality = document.getElementById('characterPersonality').value;
             const characterGoals = document.getElementById('characterGoals').value;
+            const characterSerial = document.getElementById('characterSerial').value;
             const discordName = document.getElementById('discordName').value;
             
             // Discord webhook URL
@@ -221,6 +227,11 @@
                         {
                             name: 'Uyruk',
                             value: characterNationality,
+                            inline: true
+                        },
+                        {
+                            name: 'Serial Numarası',
+                            value: characterSerial,
                             inline: true
                         },
                         {
