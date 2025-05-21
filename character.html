@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>santosvibe roleplay - karakter şikayet</title>
+    <title>santosvibe roleplay - karakter başvurusu</title>
     <link rel="stylesheet" href="landing-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -145,66 +145,11 @@
         .back-link:hover {
             text-decoration: underline;
         }
-        
-        .file-upload {
-            position: relative;
-            overflow: hidden;
-            margin-top: 10px;
-            display: inline-block;
-        }
-        
-        .file-upload input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            outline: none;
-            background: white;
-            cursor: pointer;
-            display: block;
-        }
-        
-        .file-upload-btn {
-            background-color: #444;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: inline-block;
-        }
-        
-        .file-upload-btn:hover {
-            background-color: #555;
-        }
-        
-        .file-name {
-            margin-left: 10px;
-            font-size: 14px;
-            color: #aaa;
-        }
-        
-        .evidence-preview {
-            margin-top: 10px;
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 5px;
-            display: none;
-        }
     </style>
 </head>
 <body>
     <!-- Arka Plan Video/GIF -->
     <div class="background-container">
-        <div class="stars" id="stars"></div>
         <div class="overlay"></div>
         <img src="https://i.imgur.com/5oKbLxW.png" alt="los santos" class="background-video">
     </div>
@@ -228,56 +173,52 @@
         </header>
 
         <section class="content-section">
-            <h2 class="page-title">karakter şikayet formu</h2>
+            <h2 class="page-title">karakter başvurusu</h2>
             
             <div class="form-container">
-                <form id="complaintForm">
+                <form id="characterForm">
                     <div class="form-group">
-                        <label for="reporterName">şikayetçi karakter adı ve soyadı</label>
-                        <input type="text" id="reporterName" class="form-control" required>
+                        <label for="characterName">karakter adı ve soyadı</label>
+                        <input type="text" id="characterName" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="reportedName">şikayet edilen karakter adı ve soyadı</label>
-                        <input type="text" id="reportedName" class="form-control" required>
+                        <label for="characterAge">karakter yaşı</label>
+                        <input type="number" id="characterAge" class="form-control" min="18" max="80" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="complaintReason">şikayet nedeni</label>
-                        <select id="complaintReason" class="form-control" required>
+                        <label for="characterGender">cinsiyet</label>
+                        <select id="characterGender" class="form-control" required>
                             <option value="">seçiniz</option>
-                            <option value="roleplay_kuralları">roleplay kurallarına uymama</option>
-                            <option value="karakter_kuralları">karakter kurallarına uymama</option>
-                            <option value="taciz">oyun içi taciz</option>
-                            <option value="hile">hile kullanımı</option>
-                            <option value="bug">bug kullanımı</option>
-                            <option value="diğer">diğer</option>
+                            <option value="male">erkek</option>
+                            <option value="female">kadın</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="complaintDetails">şikayet detayları</label>
-                        <textarea id="complaintDetails" class="form-control" placeholder="Şikayetinizin detaylarını, olayın ne zaman ve nasıl gerçekleştiğini, kimlerin dahil olduğunu detaylı bir şekilde anlatınız..." required></textarea>
+                        <label for="characterNationality">uyruk</label>
+                        <input type="text" id="characterNationality" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="evidenceDescription">kanıt açıklaması</label>
-                        <textarea id="evidenceDescription" class="form-control" placeholder="Kanıtlarınızın ne olduğunu ve olayı nasıl desteklediğini açıklayınız..."></textarea>
+                        <label for="characterBackground">karakter geçmişi</label>
+                        <textarea id="characterBackground" class="form-control" placeholder="Karakterinizin geçmişini, kim olduğunu, nereden geldiğini ve Los Santos'a neden geldiğini detaylı bir şekilde anlatınız..." required></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label>kanıt ekle (screenshot, video linki vb.)</label>
-                        <div class="file-upload">
-                            <button type="button" class="file-upload-btn">dosya seç</button>
-                            <input type="file" id="evidenceFile" accept="image/*" onchange="previewEvidence(this)">
-                        </div>
-                        <span id="fileName" class="file-name"></span>
-                        <img id="evidencePreview" class="evidence-preview" src="#" alt="kanıt önizleme">
+                        <label for="characterPersonality">karakter kişiliği</label>
+                        <textarea id="characterPersonality" class="form-control" placeholder="Karakterinizin kişiliği, hobileri, korkuları, güçlü ve zayıf yönleri hakkında bilgi veriniz..." required></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label for="evidenceLinks">ek kanıt linkleri</label>
-                        <input type="text" id="evidenceLinks" class="form-control" placeholder="Video, screenshot vb. linkleri virgülle ayırarak giriniz">
+                        <label for="characterGoals">karakter hedefleri</label>
+                        <textarea id="characterGoals" class="form-control" placeholder="Karakterinizin Los Santos'taki hedefleri ve planları nelerdir?" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="characterSerial">karakter serial numarası</label>
+                        <input type="text" id="characterSerial" class="form-control" placeholder="Karakterinizin serial numarasını giriniz" required>
                     </div>
                     
                     <div class="form-group">
@@ -285,7 +226,7 @@
                         <input type="text" id="discordName" class="form-control" placeholder="Örn: KullanıcıAdı#1234" required>
                     </div>
                     
-                    <button type="submit" class="submit-btn">şikayeti gönder</button>
+                    <button type="submit" class="submit-btn">başvuruyu gönder</button>
                 </form>
                 
                 <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> ana sayfaya dön</a>
@@ -295,11 +236,11 @@
     
     <!-- Bildirim Kutusu -->
     <div id="notification" class="notification">
-        <div class="notification-title">şikayetiniz yetkililere ulaştırıldı</div>
-        <div class="notification-message">şikayetiniz başarıyla alındı ve yetkililere iletildi.</div>
+        <div class="notification-title">başvurunuz yetkililere ulaştırıldı</div>
+        <div class="notification-message">başvurunuz başarıyla alındı ve yetkililere iletildi.</div>
         <div class="notification-info">
-            şikayetiniz en kısa sürede incelenecektir.<br>
-            şikayet durumunu discord sunucumuzda <strong>#şikayet-takip</strong> kanalından takip edebilirsiniz.
+            tahmini bekleme süreniz 30 dakika ile 1 saat arasında değişkenlik gösterebilir.<br>
+            başvuru hareketlerini discord sunucumuzda <strong>#karakter-başvurusu</strong> kanalından takip edebilirsiniz.
         </div>
         <button id="closeNotification" class="notification-button">anladım</button>
     </div>
@@ -313,256 +254,112 @@
                     document.getElementById('loadingScreen').style.display = 'none';
                 }, 500);
             }, 1500);
-            
-            // Yıldızları oluştur
-            createStars();
         });
         
-        // Yıldızları oluşturma fonksiyonu
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const starCount = 200; // Yıldız sayısı
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                // Rastgele boyut sınıfı ekle
-                const sizeClass = Math.random() < 0.6 ? 'star-small' : 
-                                 Math.random() < 0.9 ? 'star-medium' : 'star-large';
-                star.classList.add(sizeClass);
-                
-                // Rastgele pozisyon
-                const left = Math.floor(Math.random() * 100);
-                const top = Math.floor(Math.random() * 100);
-                star.style.left = left + '%';
-                star.style.top = top + '%';
-                
-                // Rastgele animasyon süresi (3-10 saniye)
-                const duration = 3 + Math.random() * 7;
-                star.style.animationDuration = duration + 's';
-                
-                // Rastgele gecikme
-                const delay = Math.random() * 5;
-                star.style.animationDelay = delay + 's';
-                
-                starsContainer.appendChild(star);
-            }
-        }
-        
-        // Kanıt dosyası önizleme
-        function previewEvidence(input) {
-            const fileName = document.getElementById('fileName');
-            const preview = document.getElementById('evidencePreview');
-            
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                fileName.textContent = file.name;
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            } else {
-                fileName.textContent = '';
-                preview.style.display = 'none';
-            }
-        }
-        
         // Form gönderimi
-        document.getElementById('complaintForm').addEventListener('submit', function(e) {
+        document.getElementById('characterForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Form verilerini toplama
-            const reporterName = document.getElementById('reporterName').value;
-            const reportedName = document.getElementById('reportedName').value;
-            const complaintReason = document.getElementById('complaintReason').value;
-            const complaintDetails = document.getElementById('complaintDetails').value;
-            const evidenceDescription = document.getElementById('evidenceDescription').value;
-            const evidenceLinks = document.getElementById('evidenceLinks').value;
+            const characterName = document.getElementById('characterName').value;
+            const characterAge = document.getElementById('characterAge').value;
+            const characterGender = document.getElementById('characterGender').value;
+            const characterNationality = document.getElementById('characterNationality').value;
+            const characterBackground = document.getElementById('characterBackground').value;
+            const characterPersonality = document.getElementById('characterPersonality').value;
+            const characterGoals = document.getElementById('characterGoals').value;
+            const characterSerial = document.getElementById('characterSerial').value;
             const discordName = document.getElementById('discordName').value;
             
-            // Kanıt dosyasını base64 olarak alma
-            let evidenceBase64 = '';
-            const evidenceFile = document.getElementById('evidenceFile').files[0];
-            if (evidenceFile) {
-                const reader = new FileReader();
-                reader.readAsDataURL(evidenceFile);
-                reader.onload = function() {
-                    evidenceBase64 = reader.result;
-                    sendComplaint(reporterName, reportedName, complaintReason, complaintDetails, evidenceDescription, evidenceLinks, discordName, evidenceBase64);
-                };
-            } else {
-                sendComplaint(reporterName, reportedName, complaintReason, complaintDetails, evidenceDescription, evidenceLinks, discordName, evidenceBase64);
-            }
-        });
-        
-        // Şikayeti Discord'a gönderme
-        function sendComplaint(reporterName, reportedName, complaintReason, complaintDetails, evidenceDescription, evidenceLinks, discordName, evidenceBase64) {
             // Discord webhook URL
             const webhookUrl = 'https://discord.com/api/webhooks/1374795174013698078/NzkeM-zN4usV_4a0TRnogTXneiP5qpkPi9CzTqy3rTXFAtNwl5j4QgOG1WhETJ5JaDnR';
-            
-            // Şikayet nedenini insan tarafından okunabilir formata çevirme
-            let reasonText = complaintReason;
-            switch(complaintReason) {
-                case 'roleplay_kuralları':
-                    reasonText = 'Roleplay Kurallarına Uymama';
-                    break;
-                case 'karakter_kuralları':
-                    reasonText = 'Karakter Kurallarına Uymama';
-                    break;
-                case 'taciz':
-                    reasonText = 'Oyun İçi Taciz';
-                    break;
-                case 'hile':
-                    reasonText = 'Hile Kullanımı';
-                    break;
-                case 'bug':
-                    reasonText = 'Bug Kullanımı';
-                    break;
-                case 'diğer':
-                    reasonText = 'Diğer';
-                    break;
-            }
             
             // Webhook için mesaj içeriği oluşturma
             const currentDate = new Date().toLocaleString('tr-TR');
             const webhookData = {
-                content: '**#şikayet kanalına yeni karakter şikayeti**',
+                content: '**#yedekleme kanalına yeni karakter başvurusu**',
                 embeds: [{
-                    title: 'yeni karakter şikayeti',
+                    title: 'yeni karakter başvurusu',
                     color: 15158332, // Kırmızı renk
                     fields: [
                         {
-                            name: 'şikayetçi karakter',
-                            value: reporterName,
+                            name: 'Karakter Adı ve Soyadı',
+                            value: characterName,
                             inline: true
                         },
                         {
-                            name: 'discord kullanıcı adı',
+                            name: 'Yaş',
+                            value: characterAge,
+                            inline: true
+                        },
+                        {
+                            name: 'Cinsiyet',
+                            value: characterGender === 'male' ? 'Erkek' : 'Kadın',
+                            inline: true
+                        },
+                        {
+                            name: 'Uyruk',
+                            value: characterNationality,
+                            inline: true
+                        },
+                        {
+                            name: 'Serial Numarası',
+                            value: characterSerial,
+                            inline: true
+                        },
+                        {
+                            name: 'Discord Kullanıcı Adı',
                             value: discordName,
                             inline: true
                         },
                         {
-                            name: 'şikayet edilen karakter',
-                            value: reportedName,
-                            inline: true
-                        },
-                        {
-                            name: 'şikayet nedeni',
-                            value: reasonText,
-                            inline: true
-                        },
-                        {
-                            name: 'şikayet tarihi',
+                            name: 'Başvuru Tarihi',
                             value: currentDate,
                             inline: true
                         },
                         {
-                            name: 'şikayet detayları',
-                            value: complaintDetails.length > 1024 ? complaintDetails.substring(0, 1021) + '...' : complaintDetails
+                            name: 'Karakter Geçmişi',
+                            value: characterBackground.length > 1024 ? characterBackground.substring(0, 1021) + '...' : characterBackground
+                        },
+                        {
+                            name: 'Karakter Kişiliği',
+                            value: characterPersonality.length > 1024 ? characterPersonality.substring(0, 1021) + '...' : characterPersonality
+                        },
+                        {
+                            name: 'Karakter Hedefleri',
+                            value: characterGoals.length > 1024 ? characterGoals.substring(0, 1021) + '...' : characterGoals
                         }
                     ],
                     footer: {
-                        text: 'santosvibe roleplay - şikayet sistemi'
+                        text: 'Santos Vibe Roleplay - Karakter Başvuru Sistemi'
                     },
                     timestamp: new Date()
                 }]
             };
             
-            // Kanıt açıklaması varsa ekle
-            if (evidenceDescription && evidenceDescription.trim() !== '') {
-                webhookData.embeds[0].fields.push({
-                    name: 'kanıt açıklaması',
-                    value: evidenceDescription.length > 1024 ? evidenceDescription.substring(0, 1021) + '...' : evidenceDescription
-                });
-            }
-            
-            // Ek kanıt linkleri varsa ekle
-            if (evidenceLinks && evidenceLinks.trim() !== '') {
-                webhookData.embeds[0].fields.push({
-                    name: 'ek kanıt linkleri',
-                    value: evidenceLinks
-                });
-            }
-            
-            // Webhook'a veri gönderme işlemi kanıt dosyası kontrolünden sonra yapılacak
-            
-            // Kanıt dosyası varsa, webhook mesajına resim URL'si olarak ekle
-            if (evidenceBase64 && evidenceBase64.length < 8000000) { // Discord 8MB limit
-                // Resmi webhook'a ekle
-                webhookData.embeds[0].image = {
-                    url: "attachment://evidence.png"
-                };
-                
-                // Form verisini oluştur
-                const formData = new FormData();
-                
-                // JSON payload'u ekle
-                const jsonPayload = JSON.stringify(webhookData);
-                const jsonBlob = new Blob([jsonPayload], { type: 'application/json' });
-                formData.append('payload_json', jsonBlob);
-                
-                // Resim dosyasını ekle
-                const byteString = atob(evidenceBase64.split(',')[1]);
-                const ab = new ArrayBuffer(byteString.length);
-                const ia = new Uint8Array(ab);
-                for (let i = 0; i < byteString.length; i++) {
-                    ia[i] = byteString.charCodeAt(i);
+            // Webhook'a veri gönderme
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(webhookData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Modern bildirim gösterme
+                    showNotification();
+                    // Form temizleme
+                    this.reset();
+                } else {
+                    alert('Başvuru gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
                 }
-                const imageBlob = new Blob([ab], { type: 'image/png' });
-                formData.append('file', imageBlob, 'evidence.png');
-                
-                // FormData ile gönder
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Modern bildirim gösterme
-                        showNotification();
-                        // Form temizleme
-                        document.getElementById('complaintForm').reset();
-                        document.getElementById('evidencePreview').style.display = 'none';
-                        document.getElementById('fileName').textContent = '';
-                    } else {
-                        alert('Şikayet gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Webhook hatası:', error);
-                    alert('Şikayet gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
-                });
-            } else {
-                // Resim yoksa normal webhook gönderimi
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(webhookData)
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Modern bildirim gösterme
-                        showNotification();
-                        // Form temizleme
-                        document.getElementById('complaintForm').reset();
-                        document.getElementById('evidencePreview').style.display = 'none';
-                        document.getElementById('fileName').textContent = '';
-                    } else {
-                        alert('Şikayet gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Webhook hatası:', error);
-                    alert('Şikayet gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
-                });
-            }
-        }
+            })
+            .catch(error => {
+                console.error('Webhook hatası:', error);
+                alert('Başvuru gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+            });
+        });
         
         // Bildirim fonksiyonları
         function showNotification() {
