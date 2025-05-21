@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>santosvibe roleplay - deprem uyarı sistemi</title>
+    <link rel="stylesheet" href="landing-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .map-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .map-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(230, 57, 70, 0.7);
+        }
+        
+        .map-subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #aaa;
+            font-size: 16px;
+        }
+        
+        .map-image {
+            position: relative;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border: 2px solid #333;
+        }
+        
+        .earthquake-point {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 0, 0, 0.7);
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            display: none;
+        }
+        
+        .pulse {
+            animation: pulse-animation 4s ease-in-out;
+        }
+        
+        @keyframes pulse-animation {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+                background-color: rgba(255, 0, 0, 0.9);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
+                background-color: rgba(255, 0, 0, 0.7);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+                background-color: rgba(255, 0, 0, 0.9);
+            }
+        }
+        
+        .earthquake-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            max-width: 300px;
+            border-left: 4px solid #e63946;
+            display: none;
+        }
+        
+        .earthquake-info h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #e63946;
+            font-size: 18px;
+        }
+        
+        .earthquake-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link i {
+            margin-right: 5px;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 0 15px;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .legend-color.red {
+            background-color: rgba(255, 0, 0, 0.7);
+        }
+        
+        .legend-text {
+            color: #fff;
+            font-size: 14px;
+        }
+        
+        .last-update {
+            text-align: center;
+            color: #aaa;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Arka Plan Video/GIF -->
+    <div class="background-container">
+        <div class="stars" id="stars"></div>
+        <div class="overlay"></div>
+        <img src="https://i.imgur.com/5oKbLxW.png" alt="los santos" class="background-video">
+    </div>
+    
+    <!-- Yükleme Ekranı -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <img src="https://i.imgur.com/5oKbLxW.png" alt="santosvibe logo" class="loading-logo">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <header class="header">
+            <div class="logo">
+                <img src="https://i.imgur.com/5oKbLxW.png" alt="santosvibe logo">
+                <h1>santosvibe roleplay</h1>
+            </div>
+        </header>
+
+        <section class="content-section">
+            <h2 class="map-title">deprem uyarı sistemi</h2>
+            <p class="map-subtitle">los santos'taki deprem aktivitelerini gerçek zamanlı olarak takip edin</p>
+            
+            <div class="map-container">
+                <img src="https://i.imgur.com/0Xt4Qzm.jpg" alt="los santos haritası" class="map-image" id="mapImage">
+                <div class="earthquake-point" id="earthquakePoint"></div>
+                
+                <div class="earthquake-info" id="earthquakeInfo">
+                    <h3>deprem uyarısı</h3>
+                    <p><strong>bölge:</strong> <span id="locationName">los santos merkez</span></p>
+                    <p><strong>şiddet:</strong> <span id="magnitude">4.7</span></p>
+                    <p><strong>zaman:</strong> <span id="timeStamp">21.05.2025 - 20:45</span></p>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color red"></div>
+                        <div class="legend-text">aktif deprem bölgesi</div>
+                    </div>
+                </div>
+                
+                <p class="last-update">son güncelleme: <span id="lastUpdate">21.05.2025 - 20:45</span></p>
+                
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> ana sayfaya dön</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Yükleme ekranını gizleme
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 1500);
+            
+            // Yıldızları oluştur
+            createStars();
+            
+            // Deprem sistemini başlat
+            initEarthquakeSystem();
+        });
+        
+        // Yıldızları oluşturma fonksiyonu
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200; // Yıldız sayısı
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Rastgele boyut sınıfı ekle
+                const sizeClass = Math.random() < 0.6 ? 'star-small' : 
+                                 Math.random() < 0.9 ? 'star-medium' : 'star-large';
+                star.classList.add(sizeClass);
+                
+                // Rastgele pozisyon
+                const left = Math.floor(Math.random() * 100);
+                const top = Math.floor(Math.random() * 100);
+                star.style.left = left + '%';
+                star.style.top = top + '%';
+                
+                // Rastgele animasyon süresi (3-10 saniye)
+                const duration = 3 + Math.random() * 7;
+                star.style.animationDuration = duration + 's';
+                
+                // Rastgele gecikme
+                const delay = Math.random() * 5;
+                star.style.animationDelay = delay + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Deprem sistemi
+        function initEarthquakeSystem() {
+            const mapImage = document.getElementById('mapImage');
+            const earthquakePoint = document.getElementById('earthquakePoint');
+            const earthquakeInfo = document.getElementById('earthquakeInfo');
+            const locationNameElement = document.getElementById('locationName');
+            const magnitudeElement = document.getElementById('magnitude');
+            const timeStampElement = document.getElementById('timeStamp');
+            const lastUpdateElement = document.getElementById('lastUpdate');
+            
+            // Los Santos'taki önemli bölgeler ve koordinatları (haritadaki yüzde olarak)
+            const locations = [
+                { name: "los santos merkez", x: 50, y: 50 },
+                { name: "vinewood", x: 50, y: 30 },
+                { name: "east los santos", x: 65, y: 55 },
+                { name: "santa maria beach", x: 40, y: 75 },
+                { name: "verona beach", x: 45, y: 65 },
+                { name: "richman", x: 35, y: 35 },
+                { name: "rodeo", x: 30, y: 45 },
+                { name: "ganton", x: 60, y: 60 },
+                { name: "idlewood", x: 55, y: 50 },
+                { name: "jefferson", x: 65, y: 45 },
+                { name: "las colinas", x: 70, y: 40 },
+                { name: "commerce", x: 50, y: 55 },
+                { name: "conference center", x: 45, y: 45 },
+                { name: "pershing square", x: 52, y: 52 },
+                { name: "verdant bluffs", x: 55, y: 70 },
+                { name: "market", x: 45, y: 50 },
+                { name: "temple", x: 55, y: 40 },
+                { name: "glen park", x: 60, y: 45 },
+                { name: "downtown", x: 50, y: 45 },
+                { name: "mulholland", x: 40, y: 25 }
+            ];
+            
+            // Deprem oluşturma fonksiyonu
+            function createEarthquake() {
+                // Rastgele bir bölge seç
+                const location = locations[Math.floor(Math.random() * locations.length)];
+                
+                // Rastgele şiddet oluştur (3.5 - 6.5 arası)
+                const magnitude = (3.5 + Math.random() * 3).toFixed(1);
+                
+                // Şu anki zaman
+                const now = new Date();
+                const timeStamp = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getFullYear()} - ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                
+                // Deprem noktasını konumlandır
+                earthquakePoint.style.left = `${location.x}%`;
+                earthquakePoint.style.top = `${location.y}%`;
+                
+                // Bilgileri güncelle
+                locationNameElement.textContent = location.name;
+                magnitudeElement.textContent = magnitude;
+                timeStampElement.textContent = timeStamp;
+                lastUpdateElement.textContent = timeStamp;
+                
+                // Deprem noktasını ve bilgilerini göster
+                earthquakePoint.style.display = 'block';
+                earthquakeInfo.style.display = 'block';
+                
+                // Yanıp sönme animasyonunu başlat
+                earthquakePoint.classList.add('pulse');
+                
+                // 4 saniye sonra animasyonu kaldır
+                setTimeout(function() {
+                    earthquakePoint.classList.remove('pulse');
+                    earthquakePoint.style.display = 'none';
+                    earthquakeInfo.style.display = 'none';
+                }, 4000);
+            }
+            
+            // İlk depremi oluştur
+            createEarthquake();
+            
+            // Her 60 saniyede bir yeni deprem oluştur
+            setInterval(createEarthquake, 60000);
+        }
+    </script>
+</body>
+</html>
