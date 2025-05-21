@@ -16,6 +16,7 @@
             margin: 0 auto;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             position: relative;
+            overflow: hidden;
         }
         
         .map-title {
@@ -38,6 +39,7 @@
             height: auto;
             border-radius: 5px;
             border: 2px solid #333;
+            display: block;
         }
         
         .earthquake-point {
@@ -47,8 +49,9 @@
             border-radius: 50%;
             background-color: rgba(255, 0, 0, 0.7);
             transform: translate(-50%, -50%);
-            z-index: 2;
+            z-index: 10;
             display: none;
+            pointer-events: none;
         }
         
         .pulse {
@@ -74,25 +77,97 @@
             position: absolute;
             bottom: 20px;
             left: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
             color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            max-width: 300px;
-            border-left: 4px solid #e63946;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 350px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 30px rgba(230, 57, 70, 0.3);
+            backdrop-filter: blur(5px);
             display: none;
+            animation: slideIn 0.5s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
         .earthquake-info h3 {
             margin-top: 0;
-            margin-bottom: 10px;
-            color: #e63946;
-            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .earthquake-info h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 20px;
+            background-color: #e63946;
+            margin-right: 10px;
+            border-radius: 2px;
         }
         
         .earthquake-info p {
-            margin: 5px 0;
-            font-size: 14px;
+            margin: 8px 0;
+            font-size: 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+        }
+        
+        .earthquake-info p:last-child {
+            border-bottom: none;
+        }
+        
+        .earthquake-info strong {
+            color: #aaa;
+            font-weight: 500;
+        }
+        
+        .earthquake-info span {
+            font-weight: 500;
+        }
+        
+        .magnitude-display {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin: 10px 0 15px;
+            color: #fff;
+        }
+        
+        .magnitude-low {
+            color: #ffcc00;
+        }
+        
+        .magnitude-medium {
+            color: #ff9900;
+        }
+        
+        .magnitude-high {
+            color: #ff3300;
+        }
+        
+        .alert-icon {
+            display: inline-block;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
         
         .back-link {
@@ -179,14 +254,17 @@
             <p class="map-subtitle">los santos'taki deprem aktivitelerini gerçek zamanlı olarak takip edin</p>
             
             <div class="map-container">
-                <img src="https://i.imgur.com/0Xt4Qzm.jpg" alt="los santos haritası" class="map-image" id="mapImage">
+                <img src="https://static.wikia.nocookie.net/gtawiki/images/8/8f/LosSantos-GTASA-SatelliteView.jpg/revision/latest?cb=20230518223359" alt="los santos haritası" class="map-image" id="mapImage">
                 <div class="earthquake-point" id="earthquakePoint"></div>
                 
                 <div class="earthquake-info" id="earthquakeInfo">
-                    <h3>deprem uyarısı</h3>
+                    <h3><i class="fas fa-exclamation-triangle alert-icon"></i> deprem uyarısı</h3>
+                    <div class="magnitude-display" id="magnitudeDisplay">4.7</div>
                     <p><strong>bölge:</strong> <span id="locationName">los santos merkez</span></p>
-                    <p><strong>şiddet:</strong> <span id="magnitude">4.7</span></p>
+                    <p><strong>koordinat:</strong> <span id="coordinates">X: 50%, Y: 50%</span></p>
+                    <p><strong>derinlik:</strong> <span id="depth">5.2 km</span></p>
                     <p><strong>zaman:</strong> <span id="timeStamp">21.05.2025 - 20:45</span></p>
+                    <p><strong>tahmini etki:</strong> <span id="impact">orta şiddetli sarsıntı</span></p>
                 </div>
                 
                 <div class="legend">
@@ -265,34 +343,43 @@
             // Los Santos'taki önemli bölgeler ve koordinatları (haritadaki yüzde olarak)
             const locations = [
                 { name: "los santos merkez", x: 50, y: 50 },
-                { name: "vinewood", x: 50, y: 30 },
-                { name: "east los santos", x: 65, y: 55 },
-                { name: "santa maria beach", x: 40, y: 75 },
-                { name: "verona beach", x: 45, y: 65 },
-                { name: "richman", x: 35, y: 35 },
-                { name: "rodeo", x: 30, y: 45 },
-                { name: "ganton", x: 60, y: 60 },
-                { name: "idlewood", x: 55, y: 50 },
-                { name: "jefferson", x: 65, y: 45 },
-                { name: "las colinas", x: 70, y: 40 },
-                { name: "commerce", x: 50, y: 55 },
-                { name: "conference center", x: 45, y: 45 },
-                { name: "pershing square", x: 52, y: 52 },
-                { name: "verdant bluffs", x: 55, y: 70 },
-                { name: "market", x: 45, y: 50 },
-                { name: "temple", x: 55, y: 40 },
-                { name: "glen park", x: 60, y: 45 },
-                { name: "downtown", x: 50, y: 45 },
-                { name: "mulholland", x: 40, y: 25 }
+                { name: "vinewood", x: 25, y: 20 },
+                { name: "east los santos", x: 65, y: 45 },
+                { name: "santa maria beach", x: 60, y: 80 },
+                { name: "verona beach", x: 55, y: 70 },
+                { name: "richman", x: 20, y: 30 },
+                { name: "rodeo", x: 30, y: 40 },
+                { name: "ganton", x: 60, y: 55 },
+                { name: "idlewood", x: 50, y: 55 },
+                { name: "jefferson", x: 55, y: 45 },
+                { name: "las colinas", x: 70, y: 35 },
+                { name: "commerce", x: 45, y: 45 },
+                { name: "conference center", x: 40, y: 40 },
+                { name: "pershing square", x: 45, y: 50 },
+                { name: "verdant bluffs", x: 60, y: 65 },
+                { name: "market", x: 40, y: 50 },
+                { name: "temple", x: 45, y: 35 },
+                { name: "glen park", x: 55, y: 40 },
+                { name: "downtown", x: 40, y: 45 },
+                { name: "mulholland", x: 30, y: 25 },
+                { name: "palomino creek", x: 80, y: 20 },
+                { name: "dillimore", x: 75, y: 15 },
+                { name: "montgomery", x: 85, y: 25 },
+                { name: "blueberry", x: 70, y: 25 },
+                { name: "angel pine", x: 15, y: 80 },
+                { name: "whetstone", x: 20, y: 70 },
+                { name: "flint county", x: 30, y: 60 }
             ];
+            
+
             
             // Deprem oluşturma fonksiyonu
             function createEarthquake() {
                 // Rastgele bir bölge seç
                 const location = locations[Math.floor(Math.random() * locations.length)];
                 
-                // Rastgele şiddet oluştur (3.5 - 6.5 arası)
-                const magnitude = (3.5 + Math.random() * 3).toFixed(1);
+                // Rastgele bir büyüklük oluştur (2.0 ile 6.0 arasında)
+                const magnitude = (2.0 + Math.random() * 4).toFixed(1);
                 
                 // Şu anki zaman
                 const now = new Date();
@@ -302,11 +389,40 @@
                 earthquakePoint.style.left = `${location.x}%`;
                 earthquakePoint.style.top = `${location.y}%`;
                 
+                // Rastgele derinlik oluştur (2-15 km arası)
+                const depth = (2 + Math.random() * 13).toFixed(1);
+                
+                // Deprem etkisini belirle
+                let impact = "";
+                if (magnitude < 4.0) {
+                    impact = "hafif sarsıntı";
+                } else if (magnitude < 6.0) {
+                    impact = "orta şiddetli sarsıntı";
+                } else {
+                    impact = "yıkıcı sarsıntı";
+                }
+                
                 // Bilgileri güncelle
                 locationNameElement.textContent = location.name;
-                magnitudeElement.textContent = magnitude;
+                document.getElementById('coordinates').textContent = `X: ${location.x}%, Y: ${location.y}%`;
+                document.getElementById('depth').textContent = `${depth} km`;
+                document.getElementById('impact').textContent = impact;
                 timeStampElement.textContent = timeStamp;
                 lastUpdateElement.textContent = timeStamp;
+                
+                // Magnitude göstergesini güncelle
+                const magnitudeDisplay = document.getElementById('magnitudeDisplay');
+                magnitudeDisplay.textContent = magnitude;
+                
+                // Magnitude renk sınıfını ayarla
+                magnitudeDisplay.className = 'magnitude-display';
+                if (magnitude < 4.0) {
+                    magnitudeDisplay.classList.add('magnitude-low');
+                } else if (magnitude < 6.0) {
+                    magnitudeDisplay.classList.add('magnitude-medium');
+                } else {
+                    magnitudeDisplay.classList.add('magnitude-high');
+                }
                 
                 // Deprem noktasını ve bilgilerini göster
                 earthquakePoint.style.display = 'block';
@@ -321,13 +437,27 @@
                     earthquakePoint.style.display = 'none';
                     earthquakeInfo.style.display = 'none';
                 }, 4000);
+                
+                // Deprem şiddetine göre nokta boyutunu ayarla
+                const size = Math.max(20, Math.min(50, magnitude * 5));
+                earthquakePoint.style.width = `${size}px`;
+                earthquakePoint.style.height = `${size}px`;
+                
+                // Deprem şiddetine göre renk ayarla
+                if (magnitude < 4.0) {
+                    earthquakePoint.style.backgroundColor = 'rgba(255, 255, 0, 0.7)';
+                } else if (magnitude < 6.0) {
+                    earthquakePoint.style.backgroundColor = 'rgba(255, 165, 0, 0.7)';
+                } else {
+                    earthquakePoint.style.backgroundColor = 'rgba(255, 0, 0, 0.7)';
+                }
             }
             
             // İlk depremi oluştur
             createEarthquake();
             
-            // Her 60 saniyede bir yeni deprem oluştur
-            setInterval(createEarthquake, 60000);
+            // Her 20 dakikada bir yeni deprem oluştur (1200000 milisaniye = 20 dakika)
+            setInterval(createEarthquake, 1200000);
         }
     </script>
 </body>
