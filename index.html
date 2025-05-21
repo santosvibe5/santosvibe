@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santos Vibe Roleplay</title>
+    <link rel="stylesheet" href="landing-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Arka Plan Video/GIF -->
+    <div class="background-container">
+        <div class="overlay"></div>
+        <img src="https://i.pinimg.com/originals/c9/ff/af/c9ffaff2c0455691382a5f99756e5d2c.gif" alt="Los Santos" class="background-video">
+    </div>
+    
+    <!-- Yükleme Ekranı -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <img src="https://i.imgur.com/XmU7qSK.png" alt="Santos Vibe Logo" class="loading-logo">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <header class="header">
+            <div class="logo">
+                <img src="https://i.imgur.com/XmU7qSK.png" alt="Santos Vibe Logo">
+                <h1>Santos Vibe Roleplay</h1>
+            </div>
+        </header>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Los Santos'un En İyi Roleplay Deneyimi</h2>
+                <p>Santos Vibe Roleplay sunucusuna hoş geldiniz. Gerçekçi bir roleplay deneyimi için hemen katılın!</p>
+                
+                <div class="hero-buttons">
+                    <a href="https://forum.santosvibe.com" class="btn primary-btn">
+                        <i class="fas fa-sign-in-alt"></i> Forum Giriş
+                    </a>
+                    <a href="lspd.html" class="btn secondary-btn">
+                        <i class="fas fa-shield-alt"></i> LSPD'ye Başvur
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Aktif Topluluk</h3>
+                <p>200+ aktif oyuncu ile canlı bir şehir deneyimi yaşayın.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Çeşitli Meslekler</h3>
+                <p>Polis, doktor, mekanik ve daha fazlası - kendi yolunuzu seçin.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h3>Özel Araçlar</h3>
+                <p>Özelleştirilebilir araçlar ve gerçekçi sürüş deneyimi.</p>
+            </div>
+        </section>
+
+        <section class="join-section">
+            <h2>Hemen Katılın</h2>
+            <p>Santos Vibe Roleplay'e katılmak için aşağıdaki adımları izleyin:</p>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Forum Kaydı</h3>
+                        <p>Forumumuza üye olun ve kuralları okuyun.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Karakter Oluşturma</h3>
+                        <p>Benzersiz karakterinizi oluşturun ve hikayesini yazın.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Whitelist Başvurusu</h3>
+                        <p>Whitelist başvurunuzu yapın ve onay bekleyin.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Sunucuya Giriş</h3>
+                        <p>Onay aldıktan sonra sunucumuza katılın ve roleplay'e başlayın!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-button">
+                <a href="https://forum.santosvibe.com/register" class="btn primary-btn">
+                    <i class="fas fa-user-plus"></i> Hemen Kayıt Ol
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Yükleme ekranını gizleme
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

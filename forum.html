@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>santosvibe - forum</title>
+    <link rel="stylesheet" href="forum-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Stars Background -->
+    <div class="stars-container" id="starsContainer"></div>
+    
+    <!-- Header -->
+    <header class="forum-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <h1>santosvibe roleplay</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="landing.html" class="active">Ana Sayfa</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="#" id="ucp-link">UCP</a></li>
+                    <li><a href="#" id="discord-link"><i class="fab fa-discord"></i> Discord</a></li>
+                </ul>
+            </nav>
+            <div class="user-controls">
+                <a href="#" class="login-btn">Giriş Yap</a>
+                <a href="#" class="register-btn">Kayıt Ol</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="forum-main">
+        <div class="forum-container">
+            <!-- Breaking News and Player Rankings -->
+            <div class="forum-highlights">
+                <!-- Breaking News Section -->
+                <div class="breaking-news-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-newspaper"></i> Son Haberler</h3>
+                    </div>
+                    <div class="news-container">
+                        <div class="news-item">
+                            <div class="news-header">
+                                <span class="news-category">OLAY</span>
+                                <h4>Los Santos Polis Departmanı'ndan Büyük Operasyon</h4>
+                            </div>
+                            <p class="news-excerpt">Şehir genelinde SWAT birimlerinin ortaklaşa düzenlediği operasyonlarda toplam 344 kilogram uyuşturucu hammaddesi ele geçirildi.</p>
+                            <div class="news-meta">
+                                <span class="news-date">20 Mayıs, 2025</span>
+                            </div>
+                        </div>
+                        
+                        <div class="news-item">
+                            <div class="news-header">
+                                <span class="news-category">SKANDAL</span>
+                                <h4>Ünlü Oyuncudan Büyük Ahlaksızlık!</h4>
+                            </div>
+                            <p class="news-excerpt">Ekranların sevilen jönü, dört kadınla fena yakalandı! Aşk dizilerinin vazgeçilmez yüzü, karizmasıyla milyonların gönlünü fetheden...</p>
+                            <div class="news-meta">
+                                <span class="news-date">19 Mayıs, 2025</span>
+                            </div>
+                        </div>
+                        
+                        <div class="news-item">
+                            <div class="news-header">
+                                <span class="news-category">EKONOMİ</span>
+                                <h4>Weazel News $1.2 Milyar Karşılığında Satıldı</h4>
+                            </div>
+                            <p class="news-excerpt">Ülkenin önde gelen medya kuruluşlarından Weazel News, yapılan anlaşma ile birlikte Fast Limited tarafından satın alındı.</p>
+                            <div class="news-meta">
+                                <span class="news-date">18 Mayıs, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Player Rankings Section -->
+                <div class="player-rankings-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-trophy"></i> Oyuncu Sıralaması</h3>
+                    </div>
+                    <div class="rankings-container">
+                        <div class="ranking-item top-rank">
+                            <div class="rank-number">1</div>
+                            <div class="player-info">
+                                <div class="player-name">Marco Alvarez</div>
+                                <div class="player-details">Toplam Puan: 5824</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item top-rank">
+                            <div class="rank-number">2</div>
+                            <div class="player-info">
+                                <div class="player-name">Isabella Rodriguez</div>
+                                <div class="player-details">Toplam Puan: 5612</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item top-rank">
+                            <div class="rank-number">3</div>
+                            <div class="player-info">
+                                <div class="player-name">Tommy Cole</div>
+                                <div class="player-details">Toplam Puan: 5438</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-number">4</div>
+                            <div class="player-info">
+                                <div class="player-name">Irelia Nox</div>
+                                <div class="player-details">Toplam Puan: 5127</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-number">5</div>
+                            <div class="player-info">
+                                <div class="player-name">Anthonie Van Der Vink</div>
+                                <div class="player-details">Toplam Puan: 4953</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-number">6</div>
+                            <div class="player-info">
+                                <div class="player-name">Ateş Adalı</div>
+                                <div class="player-details">Toplam Puan: 4782</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-number">7</div>
+                            <div class="player-info">
+                                <div class="player-name">Burak Saraç</div>
+                                <div class="player-details">Toplam Puan: 4651</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-number">8</div>
+                            <div class="player-info">
+                                <div class="player-name">Dora Ekin</div>
+                                <div class="player-details">Toplam Puan: 4589</div>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all-rankings">Tüm Sıralamayı Görüntüle</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Forum Categories -->
+            <div class="forum-section">
+                <div class="section-header">
+                    <h3>Genel</h3>
+                </div>
+                
+                <div class="forum-boards">
+                    <!-- Board 1 -->
+                    <div class="board">
+                        <div class="board-info">
+                            <div class="board-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="board-details">
+                                <h4><a href="#">Sunucu Bilgileri</a></h4>
+                                <p>Sunucu hakkında genel bilgiler ve duyurular</p>
+                            </div>
+                        </div>
+                        <div class="board-stats">
+                            <div class="stats-item">
+                                <span class="stats-number">5</span>
+                                <span class="stats-label">İletiler</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-number">4</span>
+                                <span class="stats-label">Konu</span>
+                            </div>
+                        </div>
+                        <div class="board-last-post">
+                            <div class="last-post-info">
+                                <a href="#" class="post-title">Sunucu Kuralları</a>
+                                <div class="post-meta">
+                                    <span>Son İleti Gönderen: </span>
+                                    <a href="#" class="post-author">santosvibe</a>
+                                </div>
+                                <div class="post-date">Mayıs 20, 2025, 22:00:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Board 2 -->
+                    <div class="board">
+                        <div class="board-info">
+                            <div class="board-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="board-details">
+                                <h4><a href="#">Duyurular</a></h4>
+                                <p>Sunucu duyuruları ve güncellemeler</p>
+                            </div>
+                        </div>
+                        <div class="board-stats">
+                            <div class="stats-item">
+                                <span class="stats-number">8</span>
+                                <span class="stats-label">İletiler</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-number">3</span>
+                                <span class="stats-label">Konu</span>
+                            </div>
+                        </div>
+                        <div class="board-last-post">
+                            <div class="last-post-info">
+                                <a href="#" class="post-title">Sunucu Güncellemesi v1.2</a>
+                                <div class="post-meta">
+                                    <span>Son İleti Gönderen: </span>
+                                    <a href="#" class="post-author">admin</a>
+                                </div>
+                                <div class="post-date">Mayıs 19, 2025, 15:30:45</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Board 3 with sub-boards -->
+                    <div class="board">
+                        <div class="board-info">
+                            <div class="board-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="board-details">
+                                <h4><a href="#">Kurallar</a></h4>
+                                <p>Sunucu ve roleplay kuralları</p>
+                            </div>
+                        </div>
+                        <div class="board-stats">
+                            <div class="stats-item">
+                                <span class="stats-number">0</span>
+                                <span class="stats-label">İletiler</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-number">5</span>
+                                <span class="stats-label">Konu</span>
+                            </div>
+                        </div>
+                        <div class="board-last-post">
+                            <div class="last-post-info">
+                                <a href="#" class="post-title">Hesap / Platform Kuralları</a>
+                                <div class="post-meta">
+                                    <span>Son İleti Gönderen: </span>
+                                    <a href="#" class="post-author">santosvibe</a>
+                                </div>
+                                <div class="post-date">Mayıs 18, 2025, 12:45:30</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Roleplay Section -->
+            <div class="forum-section">
+                <div class="section-header">
+                    <h3>Roleplay</h3>
+                </div>
+                
+                <div class="forum-boards">
+                    <!-- Board 1 -->
+                    <div class="board">
+                        <div class="board-info">
+                            <div class="board-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="board-details">
+                                <h4><a href="#">Karakter Hikayeleri</a></h4>
+                                <p>Karakterinizin hikayesini paylaşın</p>
+                            </div>
+                        </div>
+                        <div class="board-stats">
+                            <div class="stats-item">
+                                <span class="stats-number">12</span>
+                                <span class="stats-label">İletiler</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-number">7</span>
+                                <span class="stats-label">Konu</span>
+                            </div>
+                        </div>
+                        <div class="board-last-post">
+                            <div class="last-post-info">
+                                <a href="#" class="post-title">Marco Alvarez'in Hikayesi</a>
+                                <div class="post-meta">
+                                    <span>Son İleti Gönderen: </span>
+                                    <a href="#" class="post-author">RoleplayerX</a>
+                                </div>
+                                <div class="post-date">Mayıs 20, 2025, 18:22:15</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Board 2 -->
+                    <div class="board">
+                        <div class="board-info">
+                            <div class="board-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="board-details">
+                                <h4><a href="#">İşletmeler</a></h4>
+                                <p>İşletme başvuruları ve duyurular</p>
+                            </div>
+                        </div>
+                        <div class="board-stats">
+                            <div class="stats-item">
+                                <span class="stats-number">15</span>
+                                <span class="stats-label">İletiler</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-number">6</span>
+                                <span class="stats-label">Konu</span>
+                            </div>
+                        </div>
+                        <div class="board-last-post">
+                            <div class="last-post-info">
+                                <a href="#" class="post-title">Santos Cafe İşletme Başvurusu</a>
+                                <div class="post-meta">
+                                    <span>Son İleti Gönderen: </span>
+                                    <a href="#" class="post-author">CafeOwner</a>
+                                </div>
+                                <div class="post-date">Mayıs 19, 2025, 21:10:33</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Topluluk Section -->
+            <div class="forum-section">
+                <div class="section-header">
+                    <h3>Topluluk</h3>
+                </div>
+                
+                <div class="forum-boards">
+                    <!-- Board 1 -->
+                    <div class="board">
+                        <div class="board-info">
+                            <div class="board-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="board-details">
+                                <h4><a href="#">Medya Paylaşımları</a></h4>
+                                <p>Ekran görüntüleri ve videolar</p>
+                            </div>
+                        </div>
+                        <div class="board-stats">
+                            <div class="stats-item">
+                                <span class="stats-number">25</span>
+                                <span class="stats-label">İletiler</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-number">10</span>
+                                <span class="stats-label">Konu</span>
+                            </div>
+                        </div>
+                        <div class="board-last-post">
+                            <div class="last-post-info">
+                                <a href="#" class="post-title">Santos Plajında Gün Batımı</a>
+                                <div class="post-meta">
+                                    <span>Son İleti Gönderen: </span>
+                                    <a href="#" class="post-author">Photographer</a>
+                                </div>
+                                <div class="post-date">Mayıs 20, 2025, 20:15:45</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Board 2 -->
+                    <div class="board">
+                        <div class="board-info">
+                            <div class="board-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="board-details">
+                                <h4><a href="#">Genel Sohbet</a></h4>
+                                <p>Roleplay dışı konular</p>
+                            </div>
+                        </div>
+                        <div class="board-stats">
+                            <div class="stats-item">
+                                <span class="stats-number">42</span>
+                                <span class="stats-label">İletiler</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-number">15</span>
+                                <span class="stats-label">Konu</span>
+                            </div>
+                        </div>
+                        <div class="board-last-post">
+                            <div class="last-post-info">
+                                <a href="#" class="post-title">Yeni Güncelleme Hakkında</a>
+                                <div class="post-meta">
+                                    <span>Son İleti Gönderen: </span>
+                                    <a href="#" class="post-author">GameFan</a>
+                                </div>
+                                <div class="post-date">Mayıs 20, 2025, 21:30:12</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Forum Stats -->
+            <div class="forum-stats">
+                <div class="stats-container">
+                    <div class="stats-block">
+                        <h4>Forum İstatistikleri</h4>
+                        <ul>
+                            <li><i class="fas fa-comments"></i> Toplam İleti: <span>107</span></li>
+                            <li><i class="fas fa-folder"></i> Toplam Konu: <span>50</span></li>
+                            <li><i class="fas fa-users"></i> Toplam Üye: <span>85</span></li>
+                            <li><i class="fas fa-user"></i> Son Üye: <span><a href="#">NewPlayer</a></span></li>
+                        </ul>
+                    </div>
+                    <div class="stats-block">
+                        <h4>Çevrimiçi Üyeler</h4>
+                        <div class="online-users">
+                            <p>Şu anda çevrimiçi <span>12</span> üye var.</p>
+                            <div class="user-list">
+                                <a href="#">admin</a>, <a href="#">moderator</a>, <a href="#">GameFan</a>, <a href="#">RoleplayerX</a>, <a href="#">Photographer</a>, <a href="#">CafeOwner</a>, <a href="#">NewPlayer</a>...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="forum-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2025 santosvibe roleplay - Tüm Hakları Saklıdır</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Gizlilik Politikası</a>
+                <a href="#">Kullanım Şartları</a>
+                <a href="#">İletişim</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create stars background
+            if (typeof createStarsBackground === 'function') {
+                createStarsBackground();
+            } else {
+                // Fallback if the function doesn't exist
+                const starsContainer = document.getElementById('starsContainer');
+                if (starsContainer) {
+                    for (let i = 0; i < 100; i++) {
+                        const star = document.createElement('div');
+                        star.className = 'star';
+                        
+                        const size = Math.random() * 3 + 2;
+                        star.style.width = `${size}px`;
+                        star.style.height = `${size}px`;
+                        
+                        const xPos = Math.random() * 100;
+                        star.style.left = `${xPos}%`;
+                        
+                        const yPos = Math.random() * 100;
+                        star.style.top = `${yPos}%`;
+                        
+                        const duration = Math.random() * 12 + 8;
+                        star.style.animationDuration = `${duration}s`;
+                        
+                        const delay = Math.random() * 5;
+                        star.style.animationDelay = `${delay}s`;
+                        
+                        const opacity = Math.random() * 0.5 + 0.5;
+                        star.style.opacity = opacity;
+                        
+                        starsContainer.appendChild(star);
+                    }
+                }
+            }
+            
+            // Discord link
+            document.getElementById('discord-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open('https://discord.gg/santosvibe', '_blank');
+            });
+        });
+    </script>
+</body>
+</html>

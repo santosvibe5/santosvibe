@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSPD Başvuru - Los Santos Polis Departmanı</title>
+    <link rel="stylesheet" href="lspd-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Yükleme Ekranı -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <img src="https://th.bing.com/th/id/OIP.QCk9BJk_EQ5yJ8TyXbF_CQHaHa?rs=1&pid=ImgDetMain" alt="LSPD Logo" class="loading-logo">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Arka Plan -->
+    <div class="background-overlay"></div>
+
+    <!-- Ana İçerik -->
+    <div class="main-container">
+        <!-- Üst Menü -->
+        <header class="header">
+            <div class="logo">
+                <img src="https://th.bing.com/th/id/OIP.QCk9BJk_EQ5yJ8TyXbF_CQHaHa?rs=1&pid=ImgDetMain" alt="LSPD Logo">
+                <h1>Los Santos Polis Departmanı</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="lspd.html">Ana Sayfa</a></li>
+                    <li><a href="lspd-apply.html" class="active">Başvuru</a></li>
+                    <li><a href="lspd.html#qualifications">Nitelikler</a></li>
+                    <li><a href="lspd.html#process">Başvuru Süreci</a></li>
+                    <li><a href="lspd.html#benefits">Maaş ve Haklar</a></li>
+                    <li><a href="lspd.html#contact">İletişim</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <!-- Başvuru Bölümü -->
+        <section class="apply-section">
+            <div class="apply-header">
+                <h2>LSPD Polis Memuru Başvurusu</h2>
+                <p>Los Santos'un güvenliğini sağlamak için bizimle çalışmak ister misiniz? Aşağıdaki formu doldurarak başvuru sürecini başlatabilirsiniz.</p>
+            </div>
+
+            <div class="application-container">
+                <form id="lspdApplicationForm" class="application-form">
+                    <div class="form-section">
+                        <h3>Kişisel Bilgiler</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Adınız</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Soyadınız</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="birthDate">Doğum Tarihi</label>
+                                <input type="date" id="birthDate" name="birthDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Cinsiyet</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="" disabled selected>Seçiniz</option>
+                                    <option value="male">Erkek</option>
+                                    <option value="female">Kadın</option>
+                                    <option value="other">Diğer</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nationality">Uyruk</label>
+                                <input type="text" id="nationality" name="nationality" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="idNumber">Kimlik Numarası</label>
+                                <input type="text" id="idNumber" name="idNumber" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>İletişim Bilgileri</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">E-posta Adresi</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon Numarası</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="address">Adres</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">Şehir</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">Posta Kodu</label>
+                                <input type="text" id="zipCode" name="zipCode" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Eğitim ve İş Deneyimi</h3>
+                        
+                        <div class="form-group full-width">
+                            <label for="education">Eğitim Seviyesi</label>
+                            <select id="education" name="education" required>
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option value="highSchool">Lise</option>
+                                <option value="associate">Ön Lisans</option>
+                                <option value="bachelor">Lisans</option>
+                                <option value="master">Yüksek Lisans</option>
+                                <option value="doctorate">Doktora</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="school">Mezun Olduğunuz Okul</label>
+                            <input type="text" id="school" name="school" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="workExperience">İş Deneyimi</label>
+                            <textarea id="workExperience" name="workExperience" rows="4" placeholder="Önceki iş deneyimlerinizi tarih ve pozisyon belirterek yazınız."></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="militaryService">Askerlik Durumu</label>
+                            <select id="militaryService" name="militaryService" required>
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option value="completed">Tamamlandı</option>
+                                <option value="exempt">Muaf</option>
+                                <option value="deferred">Tecilli</option>
+                                <option value="notApplicable">Uygulanabilir Değil</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Ek Bilgiler</h3>
+                        
+                        <div class="form-group full-width">
+                            <label for="criminalRecord">Sabıka Kaydınız Var Mı?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="criminalRecord" value="no" required> Hayır</label>
+                                <label><input type="radio" name="criminalRecord" value="yes"> Evet</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width" id="criminalRecordDetails" style="display: none;">
+                            <label for="criminalRecordExplanation">Lütfen Açıklayınız</label>
+                            <textarea id="criminalRecordExplanation" name="criminalRecordExplanation" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="drivingLicense">Ehliyet</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="drivingLicense" value="yes" required> Var</label>
+                                <label><input type="radio" name="drivingLicense" value="no"> Yok</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="whyLSPD">Neden LSPD'de Çalışmak İstiyorsunuz?</label>
+                            <textarea id="whyLSPD" name="whyLSPD" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="skills">Sahip Olduğunuz Beceriler ve Yetenekler</label>
+                            <textarea id="skills" name="skills" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="additionalInfo">Eklemek İstediğiniz Diğer Bilgiler</label>
+                            <textarea id="additionalInfo" name="additionalInfo" rows="4"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Onay</h3>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
+                                <label for="termsAgreement">Verdiğim tüm bilgilerin doğru olduğunu ve yanlış bilgi vermem durumunda başvurumun geçersiz sayılacağını kabul ediyorum.</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="backgroundCheck" name="backgroundCheck" required>
+                                <label for="backgroundCheck">LSPD'nin geçmiş araştırması yapmasına izin veriyorum.</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="dataConsent" name="dataConsent" required>
+                                <label for="dataConsent">Kişisel verilerimin işlenmesine onay veriyorum.</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="reset" class="btn secondary-btn">Formu Temizle</button>
+                        <button type="submit" class="btn primary-btn">Başvuruyu Gönder</button>
+                    </div>
+                </form>
+                
+                <!-- Başarı Mesajı -->
+                <div id="successMessage" class="success-message hidden">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Başvurunuz Başarıyla Alındı!</h3>
+                    <p>Los Santos Polis Departmanı'na gösterdiğiniz ilgi için teşekkür ederiz. Başvurunuz incelendikten sonra sizinle iletişime geçeceğiz.</p>
+                    <button id="newApplicationBtn" class="btn primary-btn">Yeni Başvuru</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alt Bilgi -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://th.bing.com/th/id/OIP.QCk9BJk_EQ5yJ8TyXbF_CQHaHa?rs=1&pid=ImgDetMain" alt="LSPD Logo">
+                    <h3>Los Santos Polis Departmanı</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Hızlı Bağlantılar</h4>
+                    <ul>
+                        <li><a href="lspd.html">Ana Sayfa</a></li>
+                        <li><a href="lspd-apply.html">Başvuru</a></li>
+                        <li><a href="lspd.html#qualifications">Nitelikler</a></li>
+                        <li><a href="lspd.html#process">Başvuru Süreci</a></li>
+                        <li><a href="lspd.html#benefits">Maaş ve Haklar</a></li>
+                        <li><a href="lspd.html#contact">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>İletişim</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> LSPD Merkez Binası, Pershing Meydanı, Los Santos</p>
+                    <p><i class="fas fa-phone"></i> 555-LSPD (5773)</p>
+                    <p><i class="fas fa-envelope"></i> recruitment@lspd.gov</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Los Santos Polis Departmanı. Tüm hakları saklıdır.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="lspd-script.js"></script>
+</body>
+</html>

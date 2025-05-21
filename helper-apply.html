@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helper Başvurusu - Santos Vibe Roleplay</title>
+    <link rel="stylesheet" href="helper-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Yükleme Ekranı -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <img src="https://i.imgur.com/8wBQZYY.jpg" alt="Santos Vibe Logo" class="loading-logo">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana İçerik -->
+    <div class="main-container">
+        <!-- Başlık -->
+        <header class="header">
+            <div class="logo">
+                <img src="https://i.imgur.com/8wBQZYY.jpg" alt="Santos Vibe Logo">
+                <h1>Helper Başvuru Formu</h1>
+            </div>
+
+        <!-- Başvuru Bölümü -->
+        <section class="apply-section">
+            <div class="apply-header">
+                <h2>Helper (Oyun İçi Yetkili) Başvurusu</h2>
+                <p>Santos Vibe Roleplay sunucusunda yetkili olmak ve oyunculara yardım etmek ister misiniz? Aşağıdaki formu doldurarak başvuru sürecini başlatabilirsiniz.</p>
+            </div>
+
+            <div class="application-container">
+                <form id="helperApplicationForm" class="application-form">
+                    <div class="form-section">
+                        <h3>Kişisel Bilgiler</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="characterName">Karakter Adınız</label>
+                                <input type="text" id="characterName" name="characterName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="realName">Gerçek Adınız</label>
+                                <input type="text" id="realName" name="realName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="age">Yaşınız</label>
+                                <input type="number" id="age" name="age" min="16" max="99" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="discord">Discord Kullanıcı Adınız</label>
+                                <input type="text" id="discord" name="discord" placeholder="Örnek: kullanıcı#1234" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="timezone">Zaman Dilimi</label>
+                                <select id="timezone" name="timezone" required>
+                                    <option value="" disabled selected>Seçiniz</option>
+                                    <option value="UTC+3">Türkiye (UTC+3)</option>
+                                    <option value="UTC+1">Orta Avrupa (UTC+1)</option>
+                                    <option value="UTC+2">Doğu Avrupa (UTC+2)</option>
+                                    <option value="UTC+0">İngiltere (UTC+0)</option>
+                                    <option value="UTC-5">Doğu Amerika (UTC-5)</option>
+                                    <option value="UTC-8">Batı Amerika (UTC-8)</option>
+                                    <option value="other">Diğer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="availableHours">Haftalık Aktif Olabileceğiniz Saat</label>
+                                <input type="number" id="availableHours" name="availableHours" min="1" max="168" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Oyun ve Roleplay Deneyimi</h3>
+                        
+                        <div class="form-group full-width">
+                            <label for="serverTime">Sunucumuzda Ne Kadar Süredir Oynuyorsunuz?</label>
+                            <select id="serverTime" name="serverTime" required>
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option value="0-1">0-1 Ay</option>
+                                <option value="1-3">1-3 Ay</option>
+                                <option value="3-6">3-6 Ay</option>
+                                <option value="6-12">6-12 Ay</option>
+                                <option value="12+">1 Yıldan Fazla</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="rpExperience">Roleplay Deneyiminiz</label>
+                            <select id="rpExperience" name="rpExperience" required>
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option value="beginner">Başlangıç (0-6 Ay)</option>
+                                <option value="intermediate">Orta (6 Ay - 2 Yıl)</option>
+                                <option value="experienced">Deneyimli (2-5 Yıl)</option>
+                                <option value="veteran">Uzman (5+ Yıl)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="previousExperience">Daha Önce Başka Bir Sunucuda Yetkili Oldunuz Mu?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="previousExperience" value="yes" required> Evet</label>
+                                <label><input type="radio" name="previousExperience" value="no"> Hayır</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width" id="previousExperienceDetails" style="display: none;">
+                            <label for="previousServerDetails">Lütfen Önceki Yetkili Deneyimlerinizi Açıklayınız</label>
+                            <textarea id="previousServerDetails" name="previousServerDetails" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="gameKnowledge">Oyun Mekanikleri Hakkında Bilgi Seviyeniz</label>
+                            <select id="gameKnowledge" name="gameKnowledge" required>
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option value="basic">Temel</option>
+                                <option value="intermediate">Orta</option>
+                                <option value="advanced">İleri</option>
+                                <option value="expert">Uzman</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Motivasyon ve Beceriler</h3>
+                        
+                        <div class="form-group full-width">
+                            <label for="whyHelper">Neden Helper Olmak İstiyorsunuz?</label>
+                            <textarea id="whyHelper" name="whyHelper" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="qualities">Sizi İyi Bir Helper Yapacak Özellikleriniz Nelerdir?</label>
+                            <textarea id="qualities" name="qualities" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="improvements">Sunucumuzda İyileştirilebilecek Alanlar Nelerdir?</label>
+                            <textarea id="improvements" name="improvements" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="scenario">Senaryo: Bir oyuncu kuralları ihlal ediyor ve uyarılarınızı dikkate almıyor. Nasıl bir yaklaşım sergilersiniz?</label>
+                            <textarea id="scenario" name="scenario" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Ek Bilgiler</h3>
+                        
+                        <div class="form-group full-width">
+                            <label for="previousBans">Daha Önce Sunucumuzdan Yasaklandınız Mı?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="previousBans" value="yes" required> Evet</label>
+                                <label><input type="radio" name="previousBans" value="no"> Hayır</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width" id="banDetails" style="display: none;">
+                            <label for="banExplanation">Lütfen Yasaklanma Nedeninizi ve Tarihini Açıklayınız</label>
+                            <textarea id="banExplanation" name="banExplanation" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="additionalInfo">Eklemek İstediğiniz Diğer Bilgiler</label>
+                            <textarea id="additionalInfo" name="additionalInfo" rows="4"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Onay</h3>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="rulesAgreement" name="rulesAgreement" required>
+                                <label for="rulesAgreement">Sunucu kurallarını okudum ve anladım.</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="infoAgreement" name="infoAgreement" required>
+                                <label for="infoAgreement">Verdiğim tüm bilgilerin doğru olduğunu ve yanlış bilgi vermem durumunda başvurumun geçersiz sayılacağını kabul ediyorum.</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="timeAgreement" name="timeAgreement" required>
+                                <label for="timeAgreement">Helper olarak belirttiğim saatlerde aktif olacağımı ve sorumluluklarımı yerine getireceğimi taahhüt ediyorum.</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="reset" class="btn secondary-btn">Formu Temizle</button>
+                        <button type="submit" class="btn primary-btn">Başvuruyu Gönder</button>
+                    </div>
+                </form>
+                
+                <!-- Başarı Mesajı -->
+                <div id="successMessage" class="success-message hidden">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Başvurunuz Başarıyla Alındı!</h3>
+                    <p>Santos Vibe Roleplay Helper ekibine gösterdiğiniz ilgi için teşekkür ederiz. Başvurunuz incelendikten sonra sizinle Discord üzerinden iletişime geçeceğiz.</p>
+                    <button id="newApplicationBtn" class="btn primary-btn">Yeni Başvuru</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer kaldırıldı -->
+    </div>
+
+    <script src="script.js"></script>
+    <script src="helper-script.js"></script>
+</body>
+</html>
