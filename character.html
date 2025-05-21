@@ -182,11 +182,98 @@
         document.getElementById('characterForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Burada form verilerini işleyebilir veya bir API'ye gönderebilirsiniz
-            alert('Başvurunuz başarıyla alındı! En kısa sürede incelenecektir.');
+            // Form verilerini toplama
+            const characterName = document.getElementById('characterName').value;
+            const characterAge = document.getElementById('characterAge').value;
+            const characterGender = document.getElementById('characterGender').value;
+            const characterNationality = document.getElementById('characterNationality').value;
+            const characterBackground = document.getElementById('characterBackground').value;
+            const characterPersonality = document.getElementById('characterPersonality').value;
+            const characterGoals = document.getElementById('characterGoals').value;
+            const discordName = document.getElementById('discordName').value;
             
-            // Form temizleme
-            this.reset();
+            // Discord webhook URL
+            const webhookUrl = 'https://discord.com/api/webhooks/1374449229107429437/LYxIHetWgtnsX91xxdx09eQAG-Hjpn8lVnNXyPoqhYhbNjETdX3dt6pEtYXIRMXfArho';
+            
+            // Webhook için mesaj içeriği oluşturma
+            const currentDate = new Date().toLocaleString('tr-TR');
+            const webhookData = {
+                content: '**#yedekleme Kanalına Yeni Karakter Başvurusu**',
+                embeds: [{
+                    title: 'Yeni Karakter Başvurusu',
+                    color: 15158332, // Kırmızı renk
+                    fields: [
+                        {
+                            name: 'Karakter Adı ve Soyadı',
+                            value: characterName,
+                            inline: true
+                        },
+                        {
+                            name: 'Yaş',
+                            value: characterAge,
+                            inline: true
+                        },
+                        {
+                            name: 'Cinsiyet',
+                            value: characterGender === 'male' ? 'Erkek' : 'Kadın',
+                            inline: true
+                        },
+                        {
+                            name: 'Uyruk',
+                            value: characterNationality,
+                            inline: true
+                        },
+                        {
+                            name: 'Discord Kullanıcı Adı',
+                            value: discordName,
+                            inline: true
+                        },
+                        {
+                            name: 'Başvuru Tarihi',
+                            value: currentDate,
+                            inline: true
+                        },
+                        {
+                            name: 'Karakter Geçmişi',
+                            value: characterBackground.length > 1024 ? characterBackground.substring(0, 1021) + '...' : characterBackground
+                        },
+                        {
+                            name: 'Karakter Kişiliği',
+                            value: characterPersonality.length > 1024 ? characterPersonality.substring(0, 1021) + '...' : characterPersonality
+                        },
+                        {
+                            name: 'Karakter Hedefleri',
+                            value: characterGoals.length > 1024 ? characterGoals.substring(0, 1021) + '...' : characterGoals
+                        }
+                    ],
+                    footer: {
+                        text: 'Santos Vibe Roleplay - Karakter Başvuru Sistemi'
+                    },
+                    timestamp: new Date()
+                }]
+            };
+            
+            // Webhook'a veri gönderme
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(webhookData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Başvurunuz başarıyla alındı! En kısa sürede incelenecektir.');
+                    // Form temizleme
+                    this.reset();
+                } else {
+                    alert('Başvuru gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+                }
+            })
+            .catch(error => {
+                console.error('Webhook hatası:', error);
+                alert('Başvuru gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+            });
         });
     </script>
 </body>
